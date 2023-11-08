@@ -19,10 +19,10 @@ exports.createUser =
       });
       return res.json(user);
     }
-    return next(new ErrorHandler({
-      message: 'user not found',
-      statusCode: 404
-    }))
+    return next(new ErrorHandler(
+      'user already Exists',
+      400
+    ))
   });
 
 exports.listUser = catchAsyncError(async (req, res) => {
@@ -31,10 +31,10 @@ exports.listUser = catchAsyncError(async (req, res) => {
   if (existentUser) {
     return res.json(existentUser);
   }
-  return next(new ErrorHandler({
-    message: 'user not found',
-    statusCode: 404
-  }))
+  return next(new ErrorHandler(
+    'No User Found',
+    404
+  ))
 }
 )
 
